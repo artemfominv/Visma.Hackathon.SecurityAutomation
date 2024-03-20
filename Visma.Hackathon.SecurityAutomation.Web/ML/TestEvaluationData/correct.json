@@ -1,0 +1,11 @@
+{
+	"RefNbr": "616",
+	"EmployeeID": "3797",
+	"Employees Department": "1",
+	"DepartmentID": "1",
+	"DocDate": "2024-03-21 0:00:00",
+	"DocDesc": "Hackathon expense",
+	"ExpenseDate": "2024-03-20 0:00:00",
+	"CuryUnitCost": "50",
+	"TranDesc": "Hackathon"
+}

@@ -1,0 +1,32 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">
+            <img style="max-height: 50px; max-width: 180px;" 
+                src="https://www.vildika.com/wp-content/uploads/visma-logo-png-transparent-small-1400x274.png" />
+        </a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler"/>
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="test">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Injection test
+            </NavLink>
+        </div>
+        
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="fraud">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Fraud detection test
+            </NavLink>
+        </div>
+    </nav>
+</div>

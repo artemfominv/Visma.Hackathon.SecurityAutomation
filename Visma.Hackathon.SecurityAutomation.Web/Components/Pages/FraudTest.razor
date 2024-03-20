@@ -1,0 +1,88 @@
+﻿@page "/fraud"
+@using Visma_Hackathon_SecurityAutomation_Web
+@using Newtonsoft.Json
+
+<div>
+    <select class="form-select-lg" @bind="FileSelected">
+        @foreach (var file in _evalFiles)
+        {
+            <option value="@file">@file</option>
+        }
+    </select>
+    <br/>
+    <br/>
+    <div class="form-floating">
+      <textarea @bind="_userInput" class="form-control" placeholder="Select one from the list" id="floatingTextarea" style="width: 100%; min-height: 600px"></textarea>
+      <label for="floatingTextarea">Json input</label>
+    </div>
+    
+    <br/>
+    <button class="btn btn-outline-primary" type="button" @onclick="Verify">Check</button>
+    <br/>
+    <br/>
+    <div class="alert alert-info" role="alert">
+      @_verifyMessage
+    </div>
+</div>
+
+
+
+@code {
+
+    const string EVAL_PATH = @".\ML\TestEvaluationData";
+    
+    string _userInput = string.Empty;
+    string _verifyMessage = string.Empty;
+    string _fileSelected = string.Empty;
+    List<string> _evalFiles = new();
+
+    private string FileSelected
+    {
+        get => _fileSelected;
+        set
+        {
+            _fileSelected = value;
+            OnSelectedValueChanged();
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        _evalFiles = Directory.GetFiles(EVAL_PATH)
+            .Select(x => x.Replace(EVAL_PATH + "\\", ""))
+            .ToList();
+    }
+
+    private void Verify()
+    {
+        try
+        {
+            var sampleData = JsonConvert.DeserializeObject<ClaimExpenseFraudDetectionModel.ModelInput>(_userInput);
+            
+            var result = ClaimExpenseFraudDetectionModel.Predict(sampleData);
+
+            if (result.PredictedLabel)
+            {
+                var confidenceRate = ((double)(result.Probability * 100)).ToString("0.00");
+                _verifyMessage = $"{confidenceRate}% confidence fraud";
+                return;
+            }
+            
+            _verifyMessage = "Looks pretty safe";
+        }
+        catch (Exception ex)
+        {
+            _verifyMessage = "Invalid JSON";
+        }
+    }
+
+    private void OnSelectedValueChanged()
+    {
+        if (string.IsNullOrEmpty(_fileSelected))
+            return;
+
+        _userInput = File.ReadAllText(Path.Combine(EVAL_PATH, _fileSelected));
+    }
+
+}

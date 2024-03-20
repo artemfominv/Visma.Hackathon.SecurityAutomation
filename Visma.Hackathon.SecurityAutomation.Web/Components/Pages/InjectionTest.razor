@@ -1,0 +1,33 @@
+﻿@page "/test"
+@using Visma.Hackathon.SecurityAutomation.Web.ML.Models
+
+<div>
+    <input type="text" @bind="_userInput" />
+    <br/>
+    <button type="button" @onclick="Verify">Check</button>
+    <br/>
+    @_verifyMessage
+</div>
+
+@code {
+
+    string _userInput = "\" select * from users where id  =  1 or \"\"&  (  \"\" or 1  =  1 -- 1\"";
+    string _verifyMessage = string.Empty;
+
+
+    private void Verify()
+    {
+        var sampleData = new InjectionDetectionModel.ModelInput { Query = _userInput };
+        var result = InjectionDetectionModel.Predict(sampleData);
+        var isInjection = result.PredictedLabel == "1";
+
+        if (isInjection)
+        {
+            _verifyMessage = "Looks like SQL injection";
+            // mark user;
+            return;
+        }
+
+        _verifyMessage = "Looks pretty safe";
+    }
+}

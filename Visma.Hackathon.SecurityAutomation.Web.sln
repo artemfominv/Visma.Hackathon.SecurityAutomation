@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visma.Hackathon.SecurityAutomation.Web", "Visma.Hackathon.SecurityAutomation.Web\Visma.Hackathon.SecurityAutomation.Web.csproj", "{A57824D7-27DC-48F1-8B86-A066E20FD7AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A57824D7-27DC-48F1-8B86-A066E20FD7AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A57824D7-27DC-48F1-8B86-A066E20FD7AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A57824D7-27DC-48F1-8B86-A066E20FD7AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A57824D7-27DC-48F1-8B86-A066E20FD7AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

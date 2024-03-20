@@ -1,0 +1,593 @@
+﻿{
+  "Scenario": "Classification",
+  "DataSource": {
+    "Type": "TabularFile",
+    "Version": 1,
+    "FilePath": "C:\\Projects\\Visma\\Hackathon20032024\\Visma.Hackathon.SecurityAutomation.Web\\Visma.Hackathon.SecurityAutomation.Web\\ML\\TrainingData\\FraudDetection\\fraud-detection-training-3.csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "RefNbr",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "EmployeeID",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "Employees Department",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "DepartmentID",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "DocDate",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "DateTime",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "DocDesc",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "ExpenseDate",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "DateTime",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "CuryUnitCost",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "TranDesc",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "IsFraud",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Boolean",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      }
+    ]
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 3,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LightGbmBinary",
+        "Score": 0.987576960701549,
+        "RuntimeInSeconds": 6.146,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e4",
+          "e0": {
+            "OutputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost"
+            ],
+            "InputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "DocDate",
+              "ExpenseDate"
+            ],
+            "InputColumnNames": [
+              "DocDate",
+              "ExpenseDate"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost",
+              "DocDate",
+              "ExpenseDate"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e4": {
+            "NumberOfLeaves": 1831,
+            "MinimumExampleCountPerLeaf": 21,
+            "LearningRate": 0.013866168528038169,
+            "NumberOfTrees": 2015,
+            "SubsampleFraction": 0.99999977667298645,
+            "MaximumBinCountPerFeature": 271,
+            "FeatureFraction": 0.99518817906212687,
+            "L1Regularization": 2.8635473292448284E-09,
+            "L2Regularization": 0.010866451381715004,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e3": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e5": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e6": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "LabelColumnName": "IsFraud",
+            "ScoreColumnName": "Score"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeBinary",
+        "Score": 0.98121914618642081,
+        "RuntimeInSeconds": 0.576,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3",
+          "e0": {
+            "OutputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost"
+            ],
+            "InputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "DocDate",
+              "ExpenseDate"
+            ],
+            "InputColumnNames": [
+              "DocDate",
+              "ExpenseDate"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost",
+              "DocDate",
+              "ExpenseDate"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 2,
+            "NumberOfTrees": 447,
+            "MaximumBinCountPerFeature": 326,
+            "FeatureFraction": 0.99999999,
+            "LearningRate": 0.16849378753156913,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e4": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e5": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e6": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "LabelColumnName": "IsFraud",
+            "ScoreColumnName": "Score"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeBinary",
+        "Score": 0.98110899263451823,
+        "RuntimeInSeconds": 0.332,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3",
+          "e0": {
+            "OutputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost"
+            ],
+            "InputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "DocDate",
+              "ExpenseDate"
+            ],
+            "InputColumnNames": [
+              "DocDate",
+              "ExpenseDate"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost",
+              "DocDate",
+              "ExpenseDate"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "NumberOfLeaves": 7,
+            "MinimumExampleCountPerLeaf": 4,
+            "NumberOfTrees": 46,
+            "MaximumBinCountPerFeature": 1023,
+            "FeatureFraction": 0.99999999,
+            "LearningRate": 0.99999977667298645,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e4": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e5": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e6": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "LabelColumnName": "IsFraud",
+            "ScoreColumnName": "Score"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LightGbmBinary",
+        "Score": 0.98099089615134594,
+        "RuntimeInSeconds": 0.107,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e4",
+          "e0": {
+            "OutputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost"
+            ],
+            "InputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "DocDate",
+              "ExpenseDate"
+            ],
+            "InputColumnNames": [
+              "DocDate",
+              "ExpenseDate"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost",
+              "DocDate",
+              "ExpenseDate"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e4": {
+            "NumberOfLeaves": 273,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 0.99999977667298645,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 0.089166475901130554,
+            "MaximumBinCountPerFeature": 407,
+            "FeatureFraction": 0.99999999,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 0.62241981018217085,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e3": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e5": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e6": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "LabelColumnName": "IsFraud",
+            "ScoreColumnName": "Score"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastForestBinary",
+        "Score": 0.97777791352499255,
+        "RuntimeInSeconds": 0.825,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e7 * e8",
+          "e0": {
+            "OutputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost"
+            ],
+            "InputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "DocDate",
+              "ExpenseDate"
+            ],
+            "InputColumnNames": [
+              "DocDate",
+              "ExpenseDate"
+            ]
+          },
+          "e2": {
+            "InputColumnNames": [
+              "RefNbr",
+              "Employees Department",
+              "DepartmentID",
+              "CuryUnitCost",
+              "DocDate",
+              "ExpenseDate"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfTrees": 56,
+            "NumberOfLeaves": 6178,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "LabelColumnName": "IsFraud",
+            "ScoreColumnName": "Score"
+          },
+          "e3": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e4": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e5": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          },
+          "e6": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "IsFraud",
+            "FeatureColumnName": "Features"
+          }
+        }
+      }
+    ],
+    "Estimators": {
+      "e0": "ReplaceMissingValues",
+      "e1": "ConvertType",
+      "e2": "Concatenate",
+      "e3": "FastTreeBinary",
+      "e4": "LightGbmBinary",
+      "e5": "LbfgsLogisticRegressionBinary",
+      "e6": "SdcaLogisticRegressionBinary",
+      "e7": "FastForestBinary",
+      "e8": "Naive"
+    },
+    "Schema": "e0 * e1 * e2 * (e3 + e4 + e5 + e6 + e7 * e8)",
+    "MetricName": "AUCPR",
+    "ModelFilePath": "C:\\Projects\\Visma\\Hackathon20032024\\Visma.Hackathon.SecurityAutomation.Web\\Visma.Hackathon.SecurityAutomation.Web\\ML\\Models\\FraudDetection\\ClaimExpenseFraudDetectionModel.mlnet"
+  },
+  "Type": "TrainingConfig",
+  "Version": 4,
+  "TrainingOption": {
+    "Version": 1,
+    "Type": "ClassificationTrainingOption",
+    "TrainingTime": 200,
+    "OptimizeMetric": "AUCPR",
+    "LabelColumn": "IsFraud",
+    "AvailableTrainers": [
+      "SDCA",
+      "LBFGS",
+      "LGBM",
+      "FASTTREE",
+      "FASTFOREST"
+    ],
+    "ValidationOption": {
+      "Version": 0,
+      "Type": "CrossValidationValidationOption",
+      "NumberOfFolds": 5
+    }
+  }
+}
